@@ -297,7 +297,7 @@ nav ul a:hover::after { width: 100%; }
   stroke: rgba(14, 31, 28, 0.3);
 }
 
-.zoho-orbit .orbit-spin { transform-origin: 300px 300px; }
+.zoho-orbit .orbit-spin { transform-origin: 340px 340px; }
 .zoho-orbit .orbit-spin--inner  { animation: orbit-cw  55s linear infinite; }
 .zoho-orbit .orbit-spin--middle { animation: orbit-ccw 80s linear infinite; }
 .zoho-orbit .orbit-spin--outer  { animation: orbit-cw  110s linear infinite; }
@@ -319,21 +319,22 @@ nav ul a:hover::after { width: 100%; }
 }
 .zoho-orbit .app-icon--solid { fill: #ffffff; stroke: none; }
 
-.zoho-orbit .app-label-pill {
-  fill: #ffffff;
-  filter: drop-shadow(0 2px 6px rgba(14, 31, 28, 0.14));
-}
 .zoho-orbit .app-label {
   font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  fill: var(--ink);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  fill: #ffffff;
   text-anchor: middle;
   dominant-baseline: central;
+  text-transform: uppercase;
 }
-.zoho-orbit .app-label--zoho {
-  font-weight: 500;
-  fill: var(--muted);
+.zoho-orbit .app-zoho {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  fill: rgba(255, 255, 255, 0.72);
+  text-anchor: middle;
+  dominant-baseline: central;
 }
 
 .zoho-orbit .floating-dot { fill: var(--accent); }
@@ -343,7 +344,7 @@ nav ul a:hover::after { width: 100%; }
   fill: none;
   stroke: var(--accent);
   stroke-width: 1.4;
-  transform-origin: 300px 300px;
+  transform-origin: 340px 340px;
   animation: center-pulse 3.6s ease-in-out infinite;
 }
 .zoho-orbit .center-disc {
@@ -957,8 +958,15 @@ nav ul a:hover::after { width: 100%; }
   color: var(--cream);
 }
 .form-success {
+  background: rgba(243, 237, 226, 0.04);
+  border: 1px solid rgba(243, 237, 226, 0.12);
+  border-radius: 8px;
+  padding: 48px;
+  min-height: 420px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 24px 0;
 }
 .form-success h4 {
   font-family: var(--serif);
@@ -970,6 +978,37 @@ nav ul a:hover::after { width: 100%; }
 .form-success p {
   color: rgba(243, 237, 226, 0.7);
 }
+.form-success .form-reset {
+  margin-top: 28px;
+  background: none;
+  border: 1px solid rgba(243, 237, 226, 0.3);
+  border-radius: 6px;
+  color: var(--cream);
+  padding: 10px 20px;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.form-success .form-reset:hover {
+  border-color: var(--cream);
+  background: rgba(243, 237, 226, 0.06);
+}
+.submit-btn[disabled] {
+  opacity: 0.75;
+  cursor: default;
+}
+.btn-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(243, 237, 226, 0.4);
+  border-top-color: var(--cream);
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+  animation: btn-spin 0.7s linear infinite;
+}
+@keyframes btn-spin { to { transform: rotate(360deg); } }
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1221,163 +1260,142 @@ nav ul a:hover::after { width: 100%; }
   </div>
 
   <div class="hero-visual" aria-hidden="true">
-    <svg class="zoho-orbit" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+    <svg class="zoho-orbit" viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
       <!-- Orbital ring guides -->
-      <circle class="orbit-ring" cx="300" cy="300" r="110"/>
-      <circle class="orbit-ring orbit-ring--dashed" cx="300" cy="300" r="195"/>
-      <circle class="orbit-ring" cx="300" cy="300" r="270"/>
+      <circle class="orbit-ring" cx="340" cy="340" r="135"/>
+      <circle class="orbit-ring orbit-ring--dashed" cx="340" cy="340" r="225"/>
+      <circle class="orbit-ring" cx="340" cy="340" r="305"/>
 
       <!-- Background dots and sparkles -->
-      <circle class="floating-dot" cx="50"  cy="90"  r="3"/>
-      <circle class="floating-dot" cx="555" cy="80"  r="2.5"/>
-      <circle class="floating-dot" cx="565" cy="525" r="3"/>
-      <circle class="floating-dot" cx="45"  cy="535" r="2.5"/>
-      <circle class="floating-dot" cx="92"  cy="290" r="2"/>
-      <circle class="floating-dot" cx="508" cy="290" r="2"/>
-      <circle class="floating-dot" cx="300" cy="572" r="2.5"/>
-      <path class="floating-star" d="M 475 84 l 1.6 5 5 1.6 -5 1.6 -1.6 5 -1.6 -5 -5 -1.6 5 -1.6 z"/>
-      <path class="floating-star" d="M 128 96 l 1.4 4.5 4.5 1.4 -4.5 1.4 -1.4 4.5 -1.4 -4.5 -4.5 -1.4 4.5 -1.4 z"/>
-      <path class="floating-star" d="M 470 522 l 1.3 4 4 1.3 -4 1.3 -1.3 4 -1.3 -4 -4 -1.3 4 -1.3 z"/>
-      <path class="floating-star" d="M 134 510 l 1.2 4 4 1.2 -4 1.2 -1.2 4 -1.2 -4 -4 -1.2 4 -1.2 z"/>
+      <circle class="floating-dot" cx="60"  cy="100" r="3"/>
+      <circle class="floating-dot" cx="620" cy="92"  r="2.5"/>
+      <circle class="floating-dot" cx="628" cy="588" r="3"/>
+      <circle class="floating-dot" cx="55"  cy="600" r="2.5"/>
+      <circle class="floating-dot" cx="105" cy="335" r="2"/>
+      <circle class="floating-dot" cx="575" cy="335" r="2"/>
+      <circle class="floating-dot" cx="340" cy="648" r="2.5"/>
+      <path class="floating-star" d="M 548 98 l 1.6 5 5 1.6 -5 1.6 -1.6 5 -1.6 -5 -5 -1.6 5 -1.6 z"/>
+      <path class="floating-star" d="M 150 114 l 1.4 4.5 4.5 1.4 -4.5 1.4 -1.4 4.5 -1.4 -4.5 -4.5 -1.4 4.5 -1.4 z"/>
+      <path class="floating-star" d="M 540 590 l 1.3 4 4 1.3 -4 1.3 -1.3 4 -1.3 -4 -4 -1.3 4 -1.3 z"/>
 
       <!-- INNER ORBIT: CRM, Mail, Books -->
       <g class="orbit-spin orbit-spin--inner">
-        <!-- Zoho CRM (red) -->
-        <g transform="translate(395 245)">
-          <g class="app-counter app-counter--inner">
-            <circle r="32" fill="#E42527"/>
-            <g class="app-icon">
-              <circle cx="-4" cy="-4" r="3"/>
-              <path d="M -10 6 Q -10 1 -4 1 Q 2 1 2 6"/>
-              <circle cx="5" cy="-1" r="2.6"/>
-              <path d="M 0 7 Q 0 3 5 3 Q 10 3 10 7"/>
-            </g>
+        <g transform="translate(457 272)"><g class="app-counter app-counter--inner">
+          <circle r="40" fill="#E42527"/>
+          <g class="app-icon" transform="translate(0 -11) scale(0.92)">
+            <circle cx="-4" cy="-4" r="3"/>
+            <path d="M -10 6 Q -10 1 -4 1 Q 2 1 2 6"/>
+            <circle cx="5" cy="-1" r="2.6"/>
+            <path d="M 0 7 Q 0 3 5 3 Q 10 3 10 7"/>
           </g>
-        </g>
-        <!-- Zoho Mail (red) -->
-        <g transform="translate(300 410)">
-          <g class="app-counter app-counter--inner">
-            <circle r="32" fill="#DA3832"/>
-            <g class="app-icon">
-              <rect x="-11" y="-7" width="22" height="15" rx="2"/>
-              <path d="M -11 -6 L 0 3 L 11 -6"/>
-            </g>
+          <text class="app-label" y="19" font-size="11">CRM</text>
+        </g></g>
+        <g transform="translate(340 475)"><g class="app-counter app-counter--inner">
+          <circle r="40" fill="#DA3832"/>
+          <g class="app-icon" transform="translate(0 -11) scale(0.9)">
+            <rect x="-11" y="-7" width="22" height="15" rx="2"/>
+            <path d="M -11 -6 L 0 3 L 11 -6"/>
           </g>
-        </g>
-        <!-- Zoho Books (blue) -->
-        <g transform="translate(205 245)">
-          <g class="app-counter app-counter--inner">
-            <circle r="32" fill="#226DB4"/>
-            <g class="app-icon">
-              <path d="M -10 -8 L -1 -6 L -1 9 L -10 7 Z"/>
-              <path d="M 10 -8 L 1 -6 L 1 9 L 10 7 Z"/>
-            </g>
+          <text class="app-label" y="19" font-size="10.5">MAIL</text>
+        </g></g>
+        <g transform="translate(223 272)"><g class="app-counter app-counter--inner">
+          <circle r="40" fill="#226DB4"/>
+          <g class="app-icon" transform="translate(0 -11) scale(0.9)">
+            <path d="M -10 -8 L -1 -6 L -1 9 L -10 7 Z"/>
+            <path d="M 10 -8 L 1 -6 L 1 9 L 10 7 Z"/>
           </g>
-        </g>
+          <text class="app-label" y="19" font-size="10">BOOKS</text>
+        </g></g>
       </g>
 
       <!-- MIDDLE ORBIT: Desk, Projects, Inventory, Analytics -->
       <g class="orbit-spin orbit-spin--middle">
-        <!-- Zoho Desk (cyan) -->
-        <g transform="translate(438 162)">
-          <g class="app-counter app-counter--middle">
-            <circle r="28" fill="#169DD8"/>
-            <g class="app-icon">
-              <path d="M -9 2 Q -9 -9 0 -9 Q 9 -9 9 2"/>
-              <path d="M -9 1 L -9 6 Q -9 8 -7 8 L -4 8 L -4 1 Z"/>
-              <path d="M 9 1 L 9 6 Q 9 8 7 8 L 4 8 L 4 1 Z"/>
-              <path d="M 4 7 Q 4 10 1 10 L -2 10"/>
-            </g>
+        <g transform="translate(499 181)"><g class="app-counter app-counter--middle">
+          <circle r="36" fill="#169DD8"/>
+          <g class="app-icon" transform="translate(0 -9) scale(0.82)">
+            <path d="M -9 2 Q -9 -9 0 -9 Q 9 -9 9 2"/>
+            <path d="M -9 1 L -9 6 Q -9 8 -7 8 L -4 8 L -4 1 Z"/>
+            <path d="M 9 1 L 9 6 Q 9 8 7 8 L 4 8 L 4 1 Z"/>
+            <path d="M 4 7 Q 4 10 1 10 L -2 10"/>
           </g>
-        </g>
-        <!-- Zoho Projects (green) -->
-        <g transform="translate(438 438)">
-          <g class="app-counter app-counter--middle">
-            <circle r="28" fill="#4CB748"/>
-            <g class="app-icon">
-              <rect x="-9" y="-8" width="18" height="16" rx="2"/>
-              <line x1="-9" y1="-3" x2="9" y2="-3"/>
-              <path d="M -5 2 L -2 5 L 4 -1"/>
-            </g>
+          <text class="app-label" y="17" font-size="9.5">DESK</text>
+        </g></g>
+        <g transform="translate(499 499)"><g class="app-counter app-counter--middle">
+          <circle r="36" fill="#4CB748"/>
+          <g class="app-icon" transform="translate(0 -8) scale(0.8)">
+            <rect x="-9" y="-8" width="18" height="16" rx="2"/>
+            <line x1="-9" y1="-3" x2="9" y2="-3"/>
+            <path d="M -5 2 L -2 5 L 4 -1"/>
           </g>
-        </g>
-        <!-- Zoho Inventory (orange) -->
-        <g transform="translate(162 438)">
-          <g class="app-counter app-counter--middle">
-            <circle r="28" fill="#E47629"/>
-            <g class="app-icon">
-              <path d="M -9 -3 L 0 -8 L 9 -3 L 9 7 L 0 11 L -9 7 Z"/>
-              <path d="M -9 -3 L 0 1 L 9 -3"/>
-              <line x1="0" y1="1" x2="0" y2="11"/>
-            </g>
+          <text class="app-label" y="18" font-size="8.5">PROJECTS</text>
+        </g></g>
+        <g transform="translate(181 499)"><g class="app-counter app-counter--middle">
+          <circle r="36" fill="#E47629"/>
+          <g class="app-icon" transform="translate(0 -8) scale(0.8)">
+            <path d="M -9 -3 L 0 -8 L 9 -3 L 9 7 L 0 11 L -9 7 Z"/>
+            <path d="M -9 -3 L 0 1 L 9 -3"/>
+            <line x1="0" y1="1" x2="0" y2="11"/>
           </g>
-        </g>
-        <!-- Zoho Analytics (purple) -->
-        <g transform="translate(162 162)">
-          <g class="app-counter app-counter--middle">
-            <circle r="28" fill="#6E54AC"/>
-            <g>
-              <line class="app-icon" x1="-9" y1="8" x2="9" y2="8"/>
-              <rect class="app-icon--solid" x="-7" y="0" width="3" height="8" rx="0.5"/>
-              <rect class="app-icon--solid" x="-1.5" y="-5" width="3" height="13" rx="0.5"/>
-              <rect class="app-icon--solid" x="4" y="-9" width="3" height="17" rx="0.5"/>
-            </g>
+          <text class="app-label" y="18" font-size="8">INVENTORY</text>
+        </g></g>
+        <g transform="translate(181 181)"><g class="app-counter app-counter--middle">
+          <circle r="36" fill="#6E54AC"/>
+          <g transform="translate(0 -9) scale(0.82)">
+            <line class="app-icon" x1="-9" y1="8" x2="9" y2="8"/>
+            <rect class="app-icon--solid" x="-7" y="0" width="3" height="8" rx="0.5"/>
+            <rect class="app-icon--solid" x="-1.5" y="-5" width="3" height="13" rx="0.5"/>
+            <rect class="app-icon--solid" x="4" y="-9" width="3" height="17" rx="0.5"/>
           </g>
-        </g>
+          <text class="app-label" y="18" font-size="8">ANALYTICS</text>
+        </g></g>
       </g>
 
       <!-- OUTER ORBIT: Meeting, Campaigns, People -->
       <g class="orbit-spin orbit-spin--outer">
-        <!-- Zoho Meeting (indigo) -->
-        <g transform="translate(300 30)">
-          <g class="app-counter app-counter--outer">
-            <circle r="24" fill="#4F46E5"/>
-            <g class="app-icon">
-              <rect x="-9" y="-6" width="13" height="12" rx="2"/>
-              <path d="M 4 -2 L 10 -6 L 10 6 L 4 2 Z"/>
-            </g>
+        <g transform="translate(340 35)"><g class="app-counter app-counter--outer">
+          <circle r="34" fill="#4F46E5"/>
+          <g class="app-icon" transform="translate(-1 -8) scale(0.78)">
+            <rect x="-9" y="-6" width="13" height="12" rx="2"/>
+            <path d="M 4 -2 L 10 -6 L 10 6 L 4 2 Z"/>
           </g>
-        </g>
-        <!-- Zoho Campaigns (pink) -->
-        <g transform="translate(534 435)">
-          <g class="app-counter app-counter--outer">
-            <circle r="24" fill="#E63780"/>
-            <g class="app-icon">
-              <path d="M -9 -3 L 5 -9 L 5 9 L -9 3 Z"/>
-              <path d="M 5 -3 Q 10 -3 10 1 Q 10 4 5 4"/>
-              <line x1="-4" y1="3" x2="-2" y2="9"/>
-            </g>
+          <text class="app-label" y="16" font-size="8">MEETING</text>
+        </g></g>
+        <g transform="translate(604 492)"><g class="app-counter app-counter--outer">
+          <circle r="34" fill="#E63780"/>
+          <g class="app-icon" transform="translate(0 -8) scale(0.74)">
+            <path d="M -9 -3 L 5 -9 L 5 9 L -9 3 Z"/>
+            <path d="M 5 -3 Q 10 -3 10 1 Q 10 4 5 4"/>
+            <line x1="-4" y1="3" x2="-2" y2="9"/>
           </g>
-        </g>
-        <!-- Zoho People (teal) -->
-        <g transform="translate(66 435)">
-          <g class="app-counter app-counter--outer">
-            <circle r="24" fill="#00A082"/>
-            <g class="app-icon">
-              <circle cx="0" cy="-4" r="4"/>
-              <path d="M -8 9 Q -8 1 0 1 Q 8 1 8 9"/>
-            </g>
+          <text class="app-label" y="16" font-size="7.5">CAMPAIGNS</text>
+        </g></g>
+        <g transform="translate(76 492)"><g class="app-counter app-counter--outer">
+          <circle r="34" fill="#00A082"/>
+          <g class="app-icon" transform="translate(0 -8) scale(0.8)">
+            <circle cx="0" cy="-4" r="4"/>
+            <path d="M -8 9 Q -8 1 0 1 Q 8 1 8 9"/>
           </g>
-        </g>
+          <text class="app-label" y="17" font-size="8.5">PEOPLE</text>
+        </g></g>
       </g>
 
-      <!-- Center pulses (two staggered) -->
-      <circle class="center-pulse" cx="300" cy="300" r="78"/>
-      <circle class="center-pulse" cx="300" cy="300" r="78" style="animation-delay: 1.2s"/>
-      <circle class="center-pulse" cx="300" cy="300" r="78" style="animation-delay: 2.4s"/>
+      <!-- Center pulses -->
+      <circle class="center-pulse" cx="340" cy="340" r="84"/>
+      <circle class="center-pulse" cx="340" cy="340" r="84" style="animation-delay: 1.2s"/>
+      <circle class="center-pulse" cx="340" cy="340" r="84" style="animation-delay: 2.4s"/>
 
-      <!-- Four-color arc ring around center -->
-      <path class="center-arc" d="M 300 228 A 72 72 0 0 1 372 300" stroke="#E42527"/>
-      <path class="center-arc" d="M 372 300 A 72 72 0 0 1 300 372" stroke="#F2961F"/>
-      <path class="center-arc" d="M 300 372 A 72 72 0 0 1 228 300" stroke="#4CB748"/>
-      <path class="center-arc" d="M 228 300 A 72 72 0 0 1 300 228" stroke="#226DB4"/>
+      <!-- Four-color Zoho arc ring -->
+      <path class="center-arc" d="M 340 262 A 78 78 0 0 1 418 340" stroke="#E42527"/>
+      <path class="center-arc" d="M 418 340 A 78 78 0 0 1 340 418" stroke="#F2961F"/>
+      <path class="center-arc" d="M 340 418 A 78 78 0 0 1 262 340" stroke="#4CB748"/>
+      <path class="center-arc" d="M 262 340 A 78 78 0 0 1 340 262" stroke="#226DB4"/>
 
-      <!-- Center white disc with ZOHO mark -->
-      <circle class="center-disc" cx="300" cy="300" r="62"/>
-      <text class="center-text" x="300" y="296">
+      <!-- Center hub -->
+      <circle class="center-disc" cx="340" cy="340" r="68"/>
+      <text class="center-text" x="340" y="333" font-size="32">
         <tspan fill="#E42527">Z</tspan><tspan fill="#F2961F">O</tspan><tspan fill="#4CB748">H</tspan><tspan fill="#226DB4">O</tspan>
       </text>
-      <text class="center-sub" x="300" y="320">ECOSYSTEM</text>
+      <text class="center-sub" x="340" y="362">APP SUITE</text>
     </svg>
   </div>
 </section>
@@ -1827,6 +1845,7 @@ nav ul a:hover::after { width: 100%; }
     <div id="form-success" class="form-success" style="display:none;">
       <h4>Thanks &mdash; we&rsquo;ve got your details.</h4>
       <p>A member of our team will be in touch shortly.</p>
+      <button type="button" id="form-reset" class="form-reset">Send another message</button>
     </div>
   </div>
 
@@ -1853,15 +1872,29 @@ nav ul a:hover::after { width: 100%; }
     var form = document.getElementById('BiginWebToRecordForm791945000000339712');
     var frame = document.getElementById('zoho_response_frame');
     var success = document.getElementById('form-success');
+    var submitBtn = document.getElementById('formsubmit');
+    var resetBtn = document.getElementById('form-reset');
+    var submitBtnHTML = submitBtn.innerHTML;
     var submitted = false;
     form.addEventListener('submit', function () {
       // Zoho's validateForm disables the submit button only on a valid submit.
-      if (document.getElementById('formsubmit').disabled) submitted = true;
+      if (submitBtn.disabled) {
+        submitted = true;
+        submitBtn.innerHTML = 'Sending<span class="btn-spinner"></span>';
+      }
     });
     frame.addEventListener('load', function () {
       if (!submitted) return; // ignore the initial empty iframe load
       form.style.display = 'none';
-      success.style.display = 'block';
+      success.style.display = 'flex';
+    });
+    resetBtn.addEventListener('click', function () {
+      form.reset();
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = submitBtnHTML;
+      submitted = false;
+      success.style.display = 'none';
+      form.style.display = '';
     });
   })();
 
