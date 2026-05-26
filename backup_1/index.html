@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ZiCO Technologies — Zoho Consulting & Implementation</title>
+<meta name="description" content="ZiCO Technologies offers expert Zoho consultancy, implementation, support, and training to help businesses streamline operations and grow." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ink: #0e1f1c;
+  --ink-soft: #1a302c;
+  --cream: #f3ede2;
+  --cream-deep: #e8dfcc;
+  --paper: #faf6ee;
+  --accent: #c8633a;
+  --accent-deep: #a84e2a;
+  --rule: rgba(14, 31, 28, 0.12);
+  --muted: rgba(14, 31, 28, 0.62);
+  --serif: 'Fraunces', 'Times New Roman', serif;
+  --sans: 'Inter', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Subtle paper grain */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(14,31,28,0.04) 1px, transparent 0);
+  background-size: 3px 3px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ---------- HEADER ---------- */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 48px;
+  background: rgba(250, 246, 238, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease, padding 0.3s ease;
+}
+header.scrolled {
+  border-bottom-color: var(--rule);
+  padding: 14px 48px;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+.logo {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.logo img {
+  height: 36px;
+  width: auto;
+  display: block;
+}
+.logo .dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
+  margin: 0 1px 4px 2px;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+nav ul a {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  position: relative;
+  padding: 4px 0;
+  transition: color 0.2s;
+}
+nav ul a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 1px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+nav ul a:hover { color: var(--accent); }
+nav ul a:hover::after { width: 100%; }
+
+.cta-btn {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 11px 22px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sans);
+}
+.cta-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+.cta-btn svg {
+  transition: transform 0.25s ease;
+}
+.cta-btn:hover svg { transform: translate(2px, -2px); }
+
+.menu-toggle { display: none; }
+
+/* ---------- HERO ---------- */
+.hero {
+  min-height: 100vh;
+  padding: 140px 48px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.1s forwards;
+}
+.eyebrow::before {
+  content: "";
+  width: 32px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(42px, 7vw, 96px);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  max-width: 16ch;
+  margin-bottom: 36px;
+  font-variation-settings: "opsz" 144;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 400;
+}
+.hero h1 .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.hero p {
+  font-size: 18px;
+  max-width: 52ch;
+  color: var(--muted);
+  margin-bottom: 48px;
+  line-height: 1.6;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.9s forwards;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1.05s forwards;
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  padding: 11px 22px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: var(--sans);
+}
+.btn-secondary:hover {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.hero-meta {
+  position: absolute;
+  bottom: 60px;
+  right: 48px;
+  display: flex;
+  gap: 48px;
+  font-size: 13px;
+  color: var(--muted);
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1.2s forwards;
+}
+.hero-meta strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+/* Decorative hero asterisk */
+.hero-mark {
+  position: absolute;
+  top: 180px;
+  right: 60px;
+  font-family: var(--serif);
+  font-size: 200px;
+  color: var(--accent);
+  opacity: 0.08;
+  font-weight: 300;
+  pointer-events: none;
+  animation: spin 30s linear infinite;
+  transform-origin: center;
+  user-select: none;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- SERVICES ---------- */
+.services {
+  padding: 120px 48px;
+  background: var(--ink);
+  color: var(--cream);
+  position: relative;
+  z-index: 2;
+}
+.section-head {
+  max-width: 1320px;
+  margin: 0 auto 80px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 48px;
+  align-items: end;
+}
+.section-label {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(243, 237, 226, 0.6);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+.section-head h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 14ch;
+}
+.section-head h2 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.services-grid {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  gap: 14px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(243, 237, 226, 0.18);
+}
+.service {
+  width: 20%;
+  flex: 1 1 20%;
+  height: 480px;
+  border-radius: 18px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: rgba(243, 237, 226, 0.04);
+  border: 1px solid rgba(243, 237, 226, 0.14);
+  transition: flex 0.5s ease-in-out, width 0.5s ease-in-out,
+              background 0.5s ease-in-out, border-color 0.5s ease-in-out;
+}
+.service.open {
+  width: 40%;
+  flex: 2.4 1 40%;
+  background: linear-gradient(to bottom,
+              rgba(200, 99, 58, 0.05) 0%,
+              rgba(200, 99, 58, 0.18) 60%,
+              rgba(200, 99, 58, 0.32) 100%);
+  border-color: rgba(200, 99, 58, 0.45);
+}
+
+.service-num {
+  position: absolute;
+  top: 28px;
+  left: 28px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--accent);
+  z-index: 2;
+}
+.service .icon {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--accent);
+  transition: all 0.4s ease;
+  z-index: 2;
+}
+.service.open .icon {
+  background: var(--accent);
+  color: var(--ink);
+  transform: rotate(45deg);
+}
+
+.service-collapsed {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  transform: translateX(0%);
+  transition: all 0.5s ease-in-out;
+  opacity: 1;
+  visibility: visible;
+}
+.service-collapsed.heading-anim {
+  transform: translateX(-10%);
+  opacity: 0;
+  visibility: hidden;
+}
+.service-collapsed h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 30px;
+  letter-spacing: -0.01em;
+  color: var(--cream);
+  margin: 0;
+  white-space: nowrap;
+  transform: rotate(-90deg);
+  transform-origin: bottom left;
+  position: relative;
+  left: 50px;
+}
+
+.service-expanded {
+  width: 290px;
+  position: absolute;
+  bottom: 28px;
+  left: 28px;
+  transform: translateX(10%);
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+.service-expanded.para-anim {
+  transform: translateX(0%);
+  opacity: 1;
+  visibility: visible;
+}
+.service-expanded h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 30px;
+  letter-spacing: -0.01em;
+  color: var(--cream);
+  margin: 0 0 14px;
+}
+.service-expanded p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(243, 237, 226, 0.82);
+  margin: 0;
+}
+
+/* ---------- ABOUT ---------- */
+.about {
+  padding: 140px 48px;
+  position: relative;
+  z-index: 2;
+}
+.about-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.about-visual {
+  position: sticky;
+  top: 120px;
+  aspect-ratio: 4/5;
+  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 100%);
+  border-radius: 4px;
+  position: sticky;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px;
+  color: var(--cream);
+}
+.about-visual::before {
+  content: "";
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(200, 99, 58, 0.25), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(200, 99, 58, 0.12), transparent 60%);
+  animation: drift 20s ease-in-out infinite alternate;
+}
+@keyframes drift {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(20px, -30px) rotate(15deg); }
+}
+.about-visual-content {
+  position: relative;
+  z-index: 1;
+}
+.about-visual .badge {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.about-visual h4 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 38px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.about-visual .signature {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: rgba(243, 237, 226, 0.7);
+  position: relative;
+  z-index: 1;
+}
+.about-visual .signature span {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-style: normal;
+  color: var(--accent);
+  margin-top: 6px;
+}
+
+.about-text h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(36px, 4.5vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -0.022em;
+  margin-bottom: 32px;
+}
+.about-text h2 em {
+  font-style: italic;
+  color: var(--accent);
+}
+.about-text p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+  max-width: 60ch;
+}
+.about-text p:first-of-type::first-line {
+  font-weight: 500;
+}
+.about-text .closer {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--ink);
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  max-width: 50ch;
+}
+
+/* ---------- TESTIMONIALS ---------- */
+.testimonials {
+  padding: 120px 48px;
+  background: var(--cream);
+  position: relative;
+  z-index: 2;
+}
+.testimonials-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+.testimonials-head {
+  text-align: center;
+  margin-bottom: 80px;
+}
+.testimonials-head .section-label {
+  justify-content: center;
+}
+.testimonials-head .section-label::before {
+  display: none;
+}
+.testimonials-head h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.022em;
+  max-width: 18ch;
+  margin: 0 auto;
+}
+.testimonials-head h2 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.testimonial {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 48px 40px 36px;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.testimonial:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -20px rgba(14, 31, 28, 0.18);
+}
+.testimonial .quote-mark {
+  font-family: var(--serif);
+  font-size: 80px;
+  line-height: 0.8;
+  color: var(--accent);
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  font-style: italic;
+  opacity: 0.5;
+}
+.testimonial blockquote {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+.testimonial cite {
+  font-style: normal;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-top: 1px solid var(--rule);
+  padding-top: 20px;
+}
+.cite-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 500;
+}
+.cite-info strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.cite-info span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ---------- CTA STRIP ---------- */
+.cta-strip {
+  padding: 100px 48px;
+  background: var(--paper);
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.cta-strip-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.cta-strip h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(34px, 4.5vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.022em;
+}
+.cta-strip h2 em {
+  font-style: italic;
+  color: var(--accent);
+}
+.cta-strip-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+.cta-large {
+  background: var(--accent);
+  color: var(--paper);
+  padding: 18px 32px;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px solid var(--accent);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--sans);
+}
+.cta-large:hover {
+  background: var(--accent-deep);
+  border-color: var(--accent-deep);
+}
+.cta-strip-actions small {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ---------- CONTACT / FOOTER ---------- */
+.contact {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 120px 48px 40px;
+  position: relative;
+  z-index: 2;
+}
+.contact-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 80px;
+  margin-bottom: 80px;
+}
+
+.contact-info .logo {
+  color: var(--cream);
+  font-size: 32px;
+  margin-bottom: 28px;
+}
+.contact-info .logo img {
+  height: 52px;
+}
+.contact-info h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 28px;
+  max-width: 14ch;
+}
+.contact-info h3 em {
+  font-style: italic;
+  color: var(--accent);
+}
+.contact-info-block {
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(243, 237, 226, 0.78);
+}
+.contact-info-block .label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.contact-info-block a:hover { color: var(--accent); }
+
+.socials {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+}
+.socials a {
+  width: 40px; height: 40px;
+  border: 1px solid rgba(243, 237, 226, 0.25);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+.socials a:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+/* ---------- FORM ---------- */
+.contact-form {
+  background: rgba(243, 237, 226, 0.04);
+  border: 1px solid rgba(243, 237, 226, 0.12);
+  border-radius: 8px;
+  padding: 48px;
+}
+.contact-form h4 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 24px;
+  margin-bottom: 32px;
+  color: var(--cream);
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.form-field.full { grid-column: 1 / -1; }
+.form-field label {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(243, 237, 226, 0.6);
+}
+.form-field input,
+.form-field textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(243, 237, 226, 0.25);
+  padding: 10px 0;
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.25s ease;
+  resize: none;
+}
+.form-field textarea { min-height: 80px; }
+.form-field input:focus,
+.form-field textarea:focus {
+  border-bottom-color: var(--accent);
+}
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: rgba(243, 237, 226, 0.3);
+}
+.submit-btn {
+  margin-top: 20px;
+  background: var(--accent);
+  color: var(--ink);
+  border: 1px solid var(--accent);
+  padding: 14px 30px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: var(--sans);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.submit-btn:hover {
+  background: var(--cream);
+  color: var(--ink);
+  border-color: var(--cream);
+}
+
+.footer-bottom {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding-top: 32px;
+  border-top: 1px solid rgba(243, 237, 226, 0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: rgba(243, 237, 226, 0.5);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-bottom a:hover { color: var(--accent); }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 960px) {
+  header { padding: 14px 20px; }
+  header.scrolled { padding: 12px 20px; }
+  nav ul { display: none; }
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  .menu-toggle span {
+    width: 22px; height: 1.5px;
+    background: var(--ink);
+  }
+  .hero { padding: 120px 20px 60px; }
+  .hero-mark { display: none; }
+  .hero-meta {
+    position: static;
+    margin-top: 60px;
+    gap: 32px;
+  }
+  .services { padding: 80px 20px; }
+  .section-head {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+  .services-grid {
+    flex-direction: column;
+    gap: 14px;
+  }
+  .service,
+  .service.open {
+    width: 100%;
+    flex: none;
+    height: auto;
+    min-height: 180px;
+    padding: 72px 20px 28px;
+  }
+  .service .icon { top: 20px; right: 20px; }
+  .service-num { top: 20px; left: 20px; }
+  .service-collapsed { display: none; }
+  .service-expanded,
+  .service-expanded.para-anim {
+    position: static;
+    width: auto;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+  }
+  .about, .testimonials, .cta-strip, .contact { padding: 80px 20px; }
+  .about-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .about-visual {
+    position: static;
+    aspect-ratio: 5/3;
+    padding: 28px;
+  }
+  .about-visual h4 { font-size: 28px; }
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+  .cta-strip-inner {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+  .contact-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .contact-form { padding: 32px 24px; }
+  .form-row { grid-template-columns: 1fr; gap: 16px; }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonial { padding: 36px 24px 24px; }
+  .testimonial blockquote { font-size: 17px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="nav-inner">
+    <a href="#" class="logo"><img src="logo.png" alt="ZiCO"></a>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="https://zicotechnologies.zohobookings.in/#/zicotechnologies" target="_blank" rel="noopener" class="cta-btn">
+      Book a Free Consultation
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+        <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <button class="menu-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-mark">✱</div>
+  <div class="eyebrow">Zoho Consultancy &amp; Development</div>
+  <h1>
+    <span class="word" style="animation-delay: 0.2s">Maximize</span>
+    <span class="word" style="animation-delay: 0.3s">your</span>
+    <span class="word" style="animation-delay: 0.4s">business</span>
+    <span class="word" style="animation-delay: 0.5s">potential</span>
+    <span class="word" style="animation-delay: 0.6s">with</span>
+    <em><span class="word" style="animation-delay: 0.7s">expert</span>
+    <span class="word" style="animation-delay: 0.8s">Zoho</span></em>
+    <span class="word" style="animation-delay: 0.85s">solutions.</span>
+  </h1>
+  <p>We help organizations streamline operations, automate workflows, and unlock growth — through deep Zoho expertise and a partnership built on results.</p>
+  <div class="hero-actions">
+    <a href="#contact" class="cta-btn">
+      Contact Us
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+        <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <a href="#services" class="btn-secondary">Explore Services</a>
+  </div>
+  <div class="hero-meta">
+    <div>
+      <strong>4</strong>
+      Service pillars
+    </div>
+    <div>
+      <strong>100%</strong>
+      Tailored to your business
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-head">
+    <div>
+      <div class="section-label">What we do</div>
+    </div>
+    <h2>Four ways we help you <em>master Zoho.</em></h2>
+  </div>
+
+  <div class="services-grid" id="services-grid">
+    <div class="service open" data-service="1">
+      <span class="service-num">— 01</span>
+      <span class="icon">+</span>
+      <div class="service-collapsed heading-anim">
+        <h3>Consult</h3>
+      </div>
+      <div class="service-expanded para-anim">
+        <h3>Consult</h3>
+        <p>We conduct a thorough analysis of your business processes, identifying key pain points and gaps. Our experts evaluate your needs to develop tailored strategies that enhance efficiency, streamline operations, and align Zoho with your unique goals.</p>
+      </div>
+    </div>
+
+    <div class="service" data-service="2">
+      <span class="service-num">— 02</span>
+      <span class="icon">+</span>
+      <div class="service-collapsed">
+        <h3>Implement</h3>
+      </div>
+      <div class="service-expanded">
+        <h3>Implement</h3>
+        <p>With years of experience in Zoho, our developers ensure a seamless implementation of your applications. We prioritize quality through multiple rounds of testing and QA, guaranteeing a tailored solution that effectively addresses your challenges.</p>
+      </div>
+    </div>
+
+    <div class="service" data-service="3">
+      <span class="service-num">— 03</span>
+      <span class="icon">+</span>
+      <div class="service-collapsed">
+        <h3>Support</h3>
+      </div>
+      <div class="service-expanded">
+        <h3>Support</h3>
+        <p>We're dedicated to ensuring a smooth transition. We provide ongoing assistance, addressing any questions or concerns as your team adapts to the new system — helping you fully leverage Zoho's capabilities for continuous improvement.</p>
+      </div>
+    </div>
+
+    <div class="service" data-service="4">
+      <span class="service-num">— 04</span>
+      <span class="icon">+</span>
+      <div class="service-collapsed">
+        <h3>Train</h3>
+      </div>
+      <div class="service-expanded">
+        <h3>Train</h3>
+        <p>Our training is designed to ensure your team fully understands and effectively utilizes the platform. Through hands-on sessions and practical guidance tailored to your business, we empower your team for enhanced productivity and collaboration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-visual">
+      <div class="about-visual-content">
+        <div class="badge">Est. ZiCO Technologies</div>
+        <h4>Your trusted partner in Zoho solutions.</h4>
+      </div>
+      <div class="signature">
+        ZiCO
+        <span>— Empowering businesses</span>
+      </div>
+    </div>
+
+    <div class="about-text">
+      <div class="section-label">About</div>
+      <h2>Welcome to <em>ZiCO Technologies.</em></h2>
+
+      <p>At ZiCO Technologies, we specialize in offering comprehensive Zoho implementation and consulting services catered to the particular requirements of your business. Our dedicated team of professionals is committed to helping organizations streamline their processes, enhance productivity, and achieve sustainable growth through the powerful capabilities of the Zoho suite.</p>
+
+      <p>With a deep understanding of Zoho products, we work closely with our clients to develop customized solutions that not only improve operational efficiency but also facilitate seamless integration across various platforms. Whether you're looking to optimize your sales processes, enhance marketing efforts, gain better control over financial operations, or elevate your customer service, we are here to guide you every step of the way.</p>
+
+      <p>Our mission is to empower businesses with the tools and knowledge needed to navigate the ever-evolving technology landscape. We pride ourselves on our customer-centric approach, ensuring your goals and objectives are at the forefront of everything we do.</p>
+
+      <p class="closer">Join us in transforming your business with innovative solutions that unlock your full potential. Together, we can pave the way for a future of excellence.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testimonials-inner">
+    <div class="testimonials-head">
+      <div class="section-label">Client feedback</div>
+      <h2>What people say <em>about us.</em></h2>
+    </div>
+
+    <div class="testimonial-grid">
+      <div class="testimonial">
+        <div class="quote-mark">"</div>
+        <blockquote>With the invaluable support of Zico Technologies, we've transitioned from manually handling activities in Zoho to implementing automated workflows that significantly enhance our operations and sales processes. Their expertise has truly made a positive impact on our efficiency.</blockquote>
+        <cite>
+          <div class="cite-avatar">L</div>
+          <div class="cite-info">
+            <strong>Licel Joy Hontalba</strong>
+            <span>Manager, Symvos</span>
+          </div>
+        </cite>
+      </div>
+
+      <div class="testimonial">
+        <div class="quote-mark">"</div>
+        <blockquote>The team is highly collaborative and adept at tailoring workflows to meet our specific needs, ensuring a seamless experience. Their dedication has helped us automate critical parts of our business with confidence.</blockquote>
+        <cite>
+          <div class="cite-avatar">R</div>
+          <div class="cite-info">
+            <strong>Ricardo</strong>
+            <span>Pharmavise</span>
+          </div>
+        </cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section class="cta-strip">
+  <div class="cta-strip-inner">
+    <h2>Ready to put Zoho to <em>real work?</em></h2>
+    <div class="cta-strip-actions">
+      <a href="https://zicotechnologies.zohobookings.in/#/zicotechnologies" target="_blank" rel="noopener" class="cta-large">
+        Book a Free Consultation
+        <svg width="14" height="14" viewBox="0 0 12 12" fill="none">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <small>30 minutes. No obligation. Real answers.</small>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <a href="#" class="logo"><img src="logo.png" alt="ZiCO"></a>
+      <h3>Let's <em>get in touch.</em></h3>
+
+      <div class="contact-info-block">
+        <div class="label">Hours</div>
+        Monday – Friday<br>10:00 AM – 7:00 PM
+      </div>
+
+      <div class="contact-info-block">
+        <div class="label">Email</div>
+        <a href="mailto:email@example.com">email@example.com</a>
+      </div>
+
+      <div class="contact-info-block">
+        <div class="label">Phone</div>
+        <a href="tel:+919911492004">+91 99114 92004</a>
+      </div>
+
+      <div class="socials">
+        <a href="https://www.linkedin.com/company/zico-technologies" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+        </a>
+        <a href="#" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <h4>Tell us about your business.</h4>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" required>
+        </div>
+        <div class="form-field">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-field">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+      </div>
+      <div class="form-field full" style="margin-bottom: 20px;">
+        <label for="company">Company</label>
+        <input type="text" id="company" name="company" required>
+      </div>
+      <div class="form-field full">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" placeholder="Briefly tell us what you're looking to achieve..."></textarea>
+      </div>
+      <button type="submit" class="submit-btn">
+        Submit
+        <svg width="14" height="14" viewBox="0 0 12 12" fill="none">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </form>
+  </div>
+
+  <div class="footer-bottom">
+    <div>© <span id="year"></span> ZiCO Technologies. All rights reserved.</div>
+    <div><a href="#">Privacy Policy</a></div>
+  </div>
+</section>
+
+<script>
+  // Sticky header shadow
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  });
+
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Form handler (placeholder — connect to Bigin/Zoho on production)
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.submit-btn');
+    const original = btn.innerHTML;
+    btn.innerHTML = 'Sending…';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.innerHTML = '✓ Thank you — we\'ll be in touch';
+      e.target.reset();
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.disabled = false;
+      }, 3500);
+    }, 800);
+  }
+
+  // Services expanding panels (Finango-style hover animation)
+  (function () {
+    const panels = document.querySelectorAll('#services-grid .service');
+    panels.forEach((panel) => {
+      panel.addEventListener('mouseover', () => {
+        panels.forEach((p) => {
+          const isActive = p === panel;
+          p.classList.toggle('open', isActive);
+          const collapsed = p.querySelector('.service-collapsed');
+          const expanded = p.querySelector('.service-expanded');
+          if (collapsed) collapsed.classList.toggle('heading-anim', isActive);
+          if (expanded) expanded.classList.toggle('para-anim', isActive);
+        });
+      });
+    });
+  })();
+
+  // Mobile menu toggle (basic show/hide of nav)
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navUl = document.querySelector('nav ul');
+  menuToggle?.addEventListener('click', () => {
+    if (navUl.style.display === 'flex') {
+      navUl.style.display = '';
+    } else {
+      navUl.style.display = 'flex';
+      navUl.style.position = 'absolute';
+      navUl.style.top = '60px';
+      navUl.style.right = '20px';
+      navUl.style.flexDirection = 'column';
+      navUl.style.background = 'var(--paper)';
+      navUl.style.padding = '20px 28px';
+      navUl.style.borderRadius = '8px';
+      navUl.style.border = '1px solid var(--rule)';
+      navUl.style.boxShadow = '0 10px 30px -10px rgba(14,31,28,0.18)';
+    }
+  });
+</script>
+
+</body>
+</html>
