@@ -639,7 +639,7 @@ nav ul a:hover::after { width: 100%; }
   background: var(--paper);
   border: 1px solid var(--rule);
   border-radius: 6px;
-  padding: 48px 40px 36px;
+  padding: 80px 40px 36px;
   position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -647,16 +647,15 @@ nav ul a:hover::after { width: 100%; }
   transform: translateY(-4px);
   box-shadow: 0 20px 40px -20px rgba(14, 31, 28, 0.18);
 }
-.testimonial .quote-mark {
-  font-family: var(--serif);
-  font-size: 80px;
-  line-height: 0.8;
-  color: var(--accent);
+.testimonial .client-logo {
   position: absolute;
-  top: 24px;
+  top: 28px;
   right: 32px;
-  font-style: italic;
-  opacity: 0.5;
+  height: 28px;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
+  opacity: 0.9;
 }
 .testimonial blockquote {
   font-family: var(--serif);
@@ -1007,7 +1006,8 @@ nav ul a:hover::after { width: 100%; }
 }
 
 @media (max-width: 480px) {
-  .testimonial { padding: 36px 24px 24px; }
+  .testimonial { padding: 68px 24px 24px; }
+  .testimonial .client-logo { top: 22px; right: 22px; height: 24px; max-width: 110px; }
   .testimonial blockquote { font-size: 17px; }
 }
 </style>
@@ -1394,6 +1394,7 @@ nav ul a:hover::after { width: 100%; }
 
     <div class="testimonial-grid">
       <div class="testimonial">
+        <img class="client-logo" src="symvos_logo.png" alt="Symvos">
         <blockquote>With the invaluable support of Zico Technologies, we've transitioned from manually handling activities in Zoho to implementing automated workflows that significantly enhance our operations and sales processes. Their expertise has truly made a positive impact on our efficiency.</blockquote>
         <cite>
           <div class="cite-avatar">L</div>
@@ -1405,6 +1406,7 @@ nav ul a:hover::after { width: 100%; }
       </div>
 
       <div class="testimonial">
+        <img class="client-logo" src="Pharmavise_logo.png" alt="Pharmavise">
         <blockquote>Zico Technologies has been instrumental in transforming our Zoho systems, specifically Zoho CRM and Zoho Recruit. Their team&rsquo;s expertise and hands-on approach ensured that every automation and workflow was aligned with our business goals. With their help, we were able to streamline our processes, which boosted our operational productivity. The improvements in our system have also enhanced our ability to pursue and manage business development opportunities effectively. For any company looking to unlock the full potential of their Zoho platform, Zico Technologies is an excellent choice.</blockquote>
         <cite>
           <div class="cite-avatar">R</div>
