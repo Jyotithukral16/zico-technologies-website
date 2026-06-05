@@ -615,7 +615,7 @@ nav ul a:hover::after { width: 100%; }
   font-weight: 400;
   font-size: clamp(36px, 5vw, 64px);
   line-height: 1.05;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.022em;
   max-width: 14ch;
 }
 .section-head h2 em {
@@ -899,142 +899,132 @@ nav ul a:hover::after { width: 100%; }
 .products-featured {
   max-width: 1320px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-.product-feature {
-  --g1: rgba(200, 99, 58, 0.20);
-  --g2: rgba(14, 31, 28, 0.10);
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  border-radius: 22px;
-  background:
-    radial-gradient(130% 110% at 100% 0%, var(--g1) 0%, transparent 50%),
-    var(--paper);
-  border: 1px solid var(--rule);
-  padding: 40px;
-  min-height: 400px;
   display: flex;
   flex-direction: column;
-  transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+  gap: 28px;
 }
-/* lively, drifting colour glows */
-.product-feature::before,
-.product-feature::after {
+.product-feature {
+  --g1: rgba(8, 153, 73, 0.22);
+  --g2: rgba(34, 109, 180, 0.18);
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--paper);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  min-height: 400px;
+  box-shadow: 0 30px 70px -42px rgba(14, 31, 28, 0.30);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+.product-feature:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 44px 90px -44px rgba(14, 31, 28, 0.4);
+}
+/* per-card colour themes */
+.pf-one { --g1: rgba(8, 153, 73, 0.20);  --g2: rgba(34, 109, 180, 0.20); }
+.pf-crm { --g1: rgba(0, 110, 185, 0.24); --g2: rgba(200, 99, 58, 0.18); }
+
+/* ----- copy side ----- */
+.pf-copy {
+  padding: 64px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.pf-copy h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.08;
+  letter-spacing: -0.022em;
+  margin-bottom: 18px;
+}
+.pf-copy h3 em { font-style: italic; color: var(--accent); }
+.pf-copy p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  max-width: 46ch;
+}
+/* ----- visual side (stylish branded panel + floating logo card) ----- */
+.pf-visual {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: 48px;
+}
+.pf-one .pf-visual {
+  background:
+    radial-gradient(at 18% 22%, rgba(8, 153, 73, 0.16), transparent 46%),
+    radial-gradient(at 82% 24%, rgba(34, 109, 180, 0.18), transparent 46%),
+    radial-gradient(at 26% 84%, rgba(249, 178, 29, 0.18), transparent 46%),
+    radial-gradient(at 84% 82%, rgba(228, 37, 39, 0.14), transparent 46%),
+    #f1f6f2;
+}
+.pf-crm .pf-visual {
+  background:
+    radial-gradient(at 24% 24%, rgba(0, 110, 185, 0.20), transparent 50%),
+    radial-gradient(at 82% 30%, rgba(0, 110, 185, 0.12), transparent 50%),
+    radial-gradient(at 72% 84%, rgba(200, 99, 58, 0.16), transparent 50%),
+    #eaf2fb;
+}
+/* drifting glow orbs */
+.pf-visual::before,
+.pf-visual::after {
   content: "";
   position: absolute;
   border-radius: 50%;
+  filter: blur(10px);
   z-index: 0;
   pointer-events: none;
-  filter: blur(6px);
 }
-.product-feature::before {
-  width: 340px; height: 340px;
-  right: -110px; top: -120px;
+.pf-visual::before {
+  width: 260px; height: 260px;
+  top: -60px; left: -40px;
   background: radial-gradient(circle at center, var(--g1) 0%, transparent 68%);
-  animation: pfGlow 16s ease-in-out infinite alternate;
+  animation: pfGlow 17s ease-in-out infinite alternate;
 }
-.product-feature::after {
-  width: 300px; height: 300px;
-  left: -120px; bottom: -130px;
+.pf-visual::after {
+  width: 240px; height: 240px;
+  bottom: -70px; right: -40px;
   background: radial-gradient(circle at center, var(--g2) 0%, transparent 70%);
-  animation: pfGlow 22s ease-in-out infinite alternate-reverse;
+  animation: pfGlow 23s ease-in-out infinite alternate-reverse;
 }
 @keyframes pfGlow {
   0%   { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-26px, 24px) scale(1.18); }
+  100% { transform: translate(24px, -22px) scale(1.18); }
 }
-.product-feature:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 34px 64px -34px rgba(14, 31, 28, 0.4);
-  border-color: rgba(200, 99, 58, 0.42);
-}
-/* per-card colour themes */
-.pf-one { --g1: rgba(8, 153, 73, 0.22);  --g2: rgba(34, 109, 180, 0.18); }
-.pf-crm { --g1: rgba(0, 110, 185, 0.24); --g2: rgba(200, 99, 58, 0.16); }
-
-.pf-bg {
+/* decorative line motif behind the logo card */
+.pf-deco {
   position: absolute;
-  top: -8px;
-  right: -14px;
-  width: 250px;
-  pointer-events: none;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 1;
-  opacity: 0.85;
-  transition: transform 0.6s ease;
-  animation: pfBgFloat 13s ease-in-out infinite alternate;
+  opacity: 0.5;
+  pointer-events: none;
 }
-.pf-crm .pf-bg { width: 230px; top: 16px; right: -6px; }
-@keyframes pfBgFloat {
-  from { transform: translateY(0) rotate(0deg); }
-  to   { transform: translateY(-14px) rotate(2.5deg); }
-}
-.product-feature:hover .pf-bg { transform: scale(1.06) translateY(-6px); }
-.pf-top {
+/* floating white logo card */
+.pf-logo-card {
   position: relative;
   z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  background: #fff;
+  border-radius: 22px;
+  padding: 40px 52px;
+  box-shadow: 0 30px 60px -26px rgba(14, 31, 28, 0.32);
+  transition: transform 0.5s ease;
+  animation: pfCardFloat 7s ease-in-out infinite alternate;
 }
-.pf-mark {
-  width: 58px;
-  height: 58px;
-  border-radius: 15px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-deep));
-  display: grid;
-  place-items: center;
-  box-shadow: 0 12px 26px -12px rgba(200, 99, 58, 0.65);
-  flex-shrink: 0;
+.product-feature:hover .pf-logo-card { transform: scale(1.04); }
+.pf-logo-card img { height: 54px; width: auto; display: block; }
+@keyframes pfCardFloat {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-12px); }
 }
-.pf-mark svg { width: 30px; height: 30px; }
-.pf-logo {
-  height: 46px;
-  width: auto;
-  max-width: 64%;
-  display: block;
-}
-.pf-tag {
-  display: inline-block;
-  align-self: flex-start;
-  font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent);
-  background: rgba(200, 99, 58, 0.08);
-  border: 1px solid rgba(200, 99, 58, 0.32);
-  padding: 7px 13px;
-  border-radius: 999px;
-  white-space: nowrap;
-  margin-bottom: 18px;
-}
-.pf-body { position: relative; z-index: 2; margin-top: auto; padding-top: 36px; }
-.pf-body h3 {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: 32px;
-  letter-spacing: -0.022em;
-  line-height: 1.1;
-  margin-bottom: 14px;
-}
-.pf-body p {
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--ink-soft);
-  max-width: 44ch;
-}
-.pf-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
-.pf-meta span {
-  font-size: 12px;
-  color: var(--muted);
-  background: rgba(14, 31, 28, 0.05);
-  border: 1px solid var(--rule);
-  padding: 6px 12px;
-  border-radius: 999px;
+@media (prefers-reduced-motion: reduce) {
+  .pf-visual::before, .pf-visual::after, .pf-logo-card { animation: none !important; }
 }
 
 .products-other { max-width: 1320px; margin: 64px auto 0; }
@@ -1128,7 +1118,6 @@ nav ul a:hover::after { width: 100%; }
 .product-chip:hover .pc-logo { transform: scale(1.07); }
 .product-chip p { margin-top: auto; }
 @media (prefers-reduced-motion: reduce) {
-  .product-feature::before, .product-feature::after, .pf-bg,
   .pc-logo, .product-chip { animation: none !important; }
 }
 .product-chip h4 {
@@ -1141,11 +1130,18 @@ nav ul a:hover::after { width: 100%; }
 
 @media (max-width: 960px) {
   .products { padding: 90px 28px; }
-  .products-featured { grid-template-columns: 1fr; }
+  .product-feature { grid-template-columns: 1fr; min-height: 0; }
+  /* keep copy above the visual on both cards for natural reading order */
+  .pf-crm .pf-visual { order: 2; }
+  .pf-copy { padding: 48px 40px; }
+  .pf-visual { padding: 48px 40px 56px; min-height: 280px; }
   .products-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 480px) {
-  .product-feature { padding: 32px 26px; min-height: 340px; }
+  .pf-copy { padding: 40px 26px; }
+  .pf-visual { padding: 36px 26px 44px; }
+  .pf-logo-card { padding: 30px 36px; }
+  .pf-logo-card img { height: 44px; }
   .products-grid { grid-template-columns: 1fr; }
 }
 
@@ -1184,55 +1180,114 @@ nav ul a:hover::after { width: 100%; }
   color: var(--accent);
 }
 
-.testimonial-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: stretch;
-  gap: 28px;
-}
-.testimonial {
-  background: var(--paper);
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-  padding: 44px 40px;
+/* ----- single-review carousel ----- */
+.testi-carousel {
+  max-width: 1040px;
+  margin: 0 auto;
   position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.testi-viewport {
+  overflow: hidden;
+  border-radius: 22px;
+  box-shadow: 0 30px 70px -42px rgba(14, 31, 28, 0.3);
+}
+.testi-track {
   display: flex;
-  flex-direction: column;
+  transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
-.testimonial--featured {
-  padding: 44px 40px;
+.testi-slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) 1fr;
+  gap: 56px;
+  align-items: center;
+  padding: 60px;
+  background: var(--paper);
 }
-.testimonial blockquote { flex: 1; }
-.testimonial:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px -20px rgba(14, 31, 28, 0.18);
+.testi-logo-wrap {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  padding: 32px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 24px 50px -30px rgba(14, 31, 28, 0.22);
 }
-.testimonial .client-logo {
-  margin-left: auto;
-  height: 40px;
+.testi-logo-wrap img {
+  max-width: 100%;
+  max-height: 110px;
   width: auto;
-  max-width: 160px;
   object-fit: contain;
   mix-blend-mode: multiply;
-  opacity: 0.92;
 }
-.testimonial blockquote {
+.testi-content blockquote {
   font-family: var(--serif);
-  font-size: 19px;
-  line-height: 1.55;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  margin-bottom: 28px;
   font-weight: 400;
+  font-size: clamp(17px, 1.55vw, 22px);
+  line-height: 1.5;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+  margin-bottom: 30px;
 }
-.testimonial cite {
-  font-style: normal;
+.testi-cite {
   display: flex;
   align-items: center;
   gap: 14px;
   border-top: 1px solid var(--rule);
-  padding-top: 20px;
+  padding-top: 22px;
+}
+/* controls */
+.testi-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 34px;
+}
+.testi-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: var(--ink);
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.testi-btn:hover {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+}
+.testi-btn svg { width: 18px; height: 18px; }
+.testi-dots { display: flex; gap: 10px; }
+.testi-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(14, 31, 28, 0.2);
+  cursor: pointer;
+  transition: background 0.3s ease, width 0.3s ease, border-radius 0.3s ease;
+}
+.testi-dot.is-active {
+  background: var(--accent);
+  width: 26px;
+  border-radius: 5px;
+}
+@media (max-width: 720px) {
+  .testi-slide {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 40px 28px;
+    text-align: left;
+  }
+  .testi-logo-wrap { aspect-ratio: auto; padding: 28px; max-width: 220px; }
+  .testi-logo-wrap img { max-height: 80px; }
 }
 .cite-avatar {
   width: 44px; height: 44px;
@@ -1617,10 +1672,6 @@ nav ul a:hover::after { width: 100%; }
     padding: 28px;
   }
   .about-visual h4 { font-size: 28px; }
-  .testimonial-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
   .cta-strip-inner {
     grid-template-columns: 1fr;
     text-align: left;
@@ -1638,10 +1689,8 @@ nav ul a:hover::after { width: 100%; }
 }
 
 @media (max-width: 480px) {
-  .testimonial,
-  .testimonial--featured { padding: 36px 28px; }
-  .testimonial .client-logo { height: 32px; max-width: 130px; }
-  .testimonial blockquote { font-size: 18px; margin-bottom: 24px; }
+  .testi-slide { padding: 36px 24px; }
+  .testi-content blockquote { font-size: 17px; margin-bottom: 24px; }
 }
 </style>
 </head>
@@ -1709,80 +1758,8 @@ nav ul a:hover::after { width: 100%; }
     </div>
   </div>
 
-  <div class="hero-visual" aria-hidden="true">
-    <div class="dash-tilt" id="dashTilt">
-      <div class="dash">
-
-        <!-- window chrome -->
-        <div class="dash-bar">
-          <span class="dash-dots">
-            <i style="background:#ef6a5a"></i><i style="background:#f4be4f"></i><i style="background:#62c264"></i>
-          </span>
-          <span class="dash-title">
-            <span class="dash-zmark"><span style="color:#E42527">Z</span><span style="color:#F2961F">o</span><span style="color:#4CB748">h</span><span style="color:#226DB4">o</span></span>
-            CRM · Dashboard
-          </span>
-          <span class="dash-live">Live</span>
-        </div>
-
-        <div class="dash-body">
-          <!-- KPI -->
-          <div class="dash-kpi-label">Revenue · this quarter</div>
-          <div class="dash-kpi-row">
-            <div class="dash-kpi">₹<span class="count" data-count="12.4">0</span>L</div>
-            <span class="dash-up">
-              <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 8L6 4L10 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              18%
-            </span>
-          </div>
-
-          <!-- chart: growing bars + drawn trend line -->
-          <div class="dash-chart">
-            <div class="dash-bars">
-              <i style="height:42%; animation-delay:0.5s"></i>
-              <i style="height:58%; animation-delay:0.58s"></i>
-              <i style="height:50%; animation-delay:0.66s"></i>
-              <i style="height:72%; animation-delay:0.74s"></i>
-              <i style="height:64%; animation-delay:0.82s"></i>
-              <i style="height:86%; animation-delay:0.9s"></i>
-              <i class="is-now" style="height:97%; animation-delay:0.98s"></i>
-            </div>
-            <svg class="dash-line" viewBox="0 0 300 132" preserveAspectRatio="none">
-              <path d="M14 92 L57 74 L100 80 L143 52 L186 60 L229 30 L283 16"/>
-            </svg>
-            <svg class="dash-line" viewBox="0 0 300 132" preserveAspectRatio="none" style="overflow:visible">
-              <circle cx="283" cy="16" r="4"/>
-            </svg>
-          </div>
-
-          <!-- stats -->
-          <div class="dash-stats">
-            <div class="dash-stat"><b><span class="count" data-count="248">0</span></b><span>Leads</span></div>
-            <div class="dash-stat"><b><span class="count" data-count="32">0</span></b><span>Deals won</span></div>
-            <div class="dash-stat"><b><span class="count" data-count="76">0</span>%</b><span>On target</span></div>
-          </div>
-
-          <!-- app dock -->
-          <div class="dash-dock">
-            <i style="background:#E42527" title="CRM"><svg viewBox="0 0 24 24"><circle cx="9.5" cy="9" r="3"/><path d="M4.5 18 Q4.5 12.5 9.5 12.5 Q14.5 12.5 14.5 18"/><circle cx="16.5" cy="10.5" r="2.3"/><path d="M14 18 Q14 14 17 14 Q20 14 20 18"/></svg></i>
-            <i style="background:#DA3832" title="Mail"><svg viewBox="0 0 24 24"><rect x="3.5" y="6" width="17" height="12" rx="2"/><path d="M3.5 7.5 L12 13 L20.5 7.5"/></svg></i>
-            <i style="background:#226DB4" title="Books"><svg viewBox="0 0 24 24"><path d="M12 6.5 Q8 4.5 4 5.5 L4 17.5 Q8 16.5 12 18.5 Z"/><path d="M12 6.5 Q16 4.5 20 5.5 L20 17.5 Q16 16.5 12 18.5 Z"/></svg></i>
-            <i style="background:#169DD8" title="Desk"><svg viewBox="0 0 24 24"><path d="M5 13 V11 a7 7 0 0 1 14 0 v2"/><rect x="3.5" y="12.5" width="3.5" height="6" rx="1.5"/><rect x="17" y="12.5" width="3.5" height="6" rx="1.5"/><path d="M16 18 Q16 20 13 20 L11.5 20"/></svg></i>
-            <i style="background:#4CB748" title="Projects"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="15" rx="2"/><line x1="5" y1="9.5" x2="19" y2="9.5"/><path d="M8.5 14.5 L11 17 L16 11.5"/></svg></i>
-            <i style="background:#6E54AC" title="Analytics"><svg viewBox="0 0 24 24"><line x1="4.5" y1="19" x2="19.5" y2="19"/><rect class="solid" x="6.5" y="11" width="3" height="7" rx="0.6"/><rect class="solid" x="10.5" y="7.5" width="3" height="10.5" rx="0.6"/><rect class="solid" x="14.5" y="4.5" width="3" height="13.5" rx="0.6"/></svg></i>
-          </div>
-        </div>
-      </div>
-
-      <!-- floating accent chip -->
-      <div class="dash-badge">
-        <span class="dot"><svg viewBox="0 0 24 24"><path d="M5 12.5 L10 17.5 L19 7"/></svg></span>
-        <span>
-          <small>Workflow</small>
-          <b>Automated</b>
-        </span>
-      </div>
-    </div>
+  <div class="hero-visual">
+    <img class="hero-img" src="landing_page_option_1.webp" alt="Zoho applications delivered by ZiCO Technologies" width="600" height="497" fetchpriority="high">
   </div>
 </section>
 
@@ -2078,59 +2055,56 @@ nav ul a:hover::after { width: 100%; }
   <!-- Featured products -->
   <div class="products-featured">
 
-    <!-- Zoho One -->
+    <!-- Zoho One — text left, logo right -->
     <article class="product-feature pf-one">
-      <svg class="pf-bg" viewBox="0 0 300 240" aria-hidden="true">
-        <rect x="36"  y="30"  width="48" height="48" rx="13" fill="#089949"/>
-        <rect x="98"  y="20"  width="48" height="48" rx="13" fill="#226DB4"/>
-        <rect x="160" y="34"  width="44" height="44" rx="13" fill="#E42527"/>
-        <rect x="220" y="22"  width="44" height="44" rx="13" fill="#F9B21D"/>
-        <rect x="46"  y="96"  width="48" height="48" rx="13" fill="#226DB4"/>
-        <rect x="108" y="100" width="44" height="44" rx="13" fill="#F9B21D"/>
-        <rect x="166" y="92"  width="48" height="48" rx="13" fill="#089949"/>
-        <rect x="228" y="98"  width="42" height="42" rx="13" fill="#E42527"/>
-        <rect x="60"  y="160" width="44" height="44" rx="13" fill="#E42527"/>
-        <rect x="118" y="166" width="48" height="48" rx="13" fill="#089949"/>
-        <rect x="180" y="158" width="44" height="44" rx="13" fill="#226DB4"/>
-      </svg>
-      <div class="pf-top">
-        <img class="pf-logo" src="zoho-logos/one.svg" alt="Zoho One" width="100" height="46" loading="lazy">
-      </div>
-      <div class="pf-body">
-        <span class="pf-tag">All-in-one suite</span>
+      <div class="pf-copy">
+        <h3>Run your entire business on <em>one platform.</em></h3>
         <p>The operating system for business — 45+ integrated applications spanning sales, marketing, finance, HR, and operations, unified under a single login and one connected platform.</p>
-        <div class="pf-meta">
-          <span>45+ apps</span>
-          <span>One login</span>
-          <span>Unified data</span>
+      </div>
+      <div class="pf-visual">
+        <svg class="pf-deco" viewBox="0 0 400 400" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <circle cx="200" cy="200" r="150" stroke="#089949" stroke-opacity="0.30" stroke-width="1.5"/>
+          <circle cx="200" cy="200" r="112" stroke="#226DB4" stroke-opacity="0.30" stroke-width="1.5"/>
+          <circle cx="200" cy="200" r="74"  stroke="#E42527" stroke-opacity="0.26" stroke-width="1.5"/>
+          <circle cx="200" cy="50"  r="6" fill="#089949"/>
+          <circle cx="350" cy="200" r="6" fill="#F9B21D"/>
+          <circle cx="200" cy="350" r="6" fill="#E42527"/>
+          <circle cx="50"  cy="200" r="6" fill="#226DB4"/>
+          <circle cx="312" cy="88"  r="5" fill="#226DB4"/>
+          <circle cx="300" cy="312" r="5" fill="#089949"/>
+        </svg>
+        <div class="pf-logo-card">
+          <img src="zoho-logos/one.svg" alt="Zoho One" loading="lazy">
         </div>
       </div>
     </article>
 
-    <!-- Zoho CRM -->
+    <!-- Zoho CRM — logo left, text right -->
     <article class="product-feature pf-crm">
-      <svg class="pf-bg" viewBox="0 0 300 240" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M40 40 H260 L188 120 V196 L112 168 V120 Z" fill="#006EB9" fill-opacity="0.16" stroke="#006EB9" stroke-width="6"/>
-        <polyline points="58,84 96,60 132,78 180,46" fill="none" stroke="#c8633a" stroke-width="5"/>
-        <circle cx="58"  cy="84" r="7" fill="#c8633a"/>
-        <circle cx="96"  cy="60" r="7" fill="#c8633a"/>
-        <circle cx="132" cy="78" r="7" fill="#c8633a"/>
-        <circle cx="180" cy="46" r="7" fill="#c8633a"/>
-        <circle cx="70"  cy="210" r="15" fill="#006EB9"/>
-        <circle cx="150" cy="218" r="15" fill="#089949"/>
-        <circle cx="230" cy="210" r="15" fill="#F9B21D"/>
-      </svg>
-      <div class="pf-top">
-        <img class="pf-logo" src="zoho-logos/crm.svg" alt="Zoho CRM" width="111" height="46" loading="lazy">
-      </div>
-      <div class="pf-body">
-        <span class="pf-tag">Sales &amp; pipeline</span>
-        <p>Close more deals with a 360° view of every customer. Automate your sales pipeline, score leads intelligently, and turn data into forecasts with AI-assisted insights from Zia.</p>
-        <div class="pf-meta">
-          <span>Lead &amp; deal automation</span>
-          <span>Zia AI</span>
-          <span>Forecasting</span>
+      <div class="pf-visual">
+        <svg class="pf-deco" viewBox="0 0 400 400" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <g stroke="#006EB9" stroke-opacity="0.16" stroke-width="1">
+            <line x1="60" y1="300" x2="340" y2="300"/>
+            <line x1="60" y1="240" x2="340" y2="240"/>
+            <line x1="60" y1="180" x2="340" y2="180"/>
+            <line x1="60" y1="120" x2="340" y2="120"/>
+          </g>
+          <g fill="#006EB9" fill-opacity="0.20">
+            <rect x="92"  y="222" width="34" height="78"  rx="4"/>
+            <rect x="152" y="182" width="34" height="118" rx="4"/>
+            <rect x="212" y="202" width="34" height="98"  rx="4"/>
+            <rect x="272" y="142" width="34" height="158" rx="4"/>
+          </g>
+          <polyline points="109,212 169,172 229,188 289,122" fill="none" stroke="#c8633a" stroke-opacity="0.7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="289" cy="122" r="6" fill="#c8633a"/>
+        </svg>
+        <div class="pf-logo-card">
+          <img src="zoho-logos/crm.svg" alt="Zoho CRM" loading="lazy">
         </div>
+      </div>
+      <div class="pf-copy">
+        <h3>Turn relationships into <em>revenue.</em></h3>
+        <p>Close more deals with a 360° view of every customer. Automate your sales pipeline, score leads intelligently, and turn data into forecasts with AI-assisted insights from Zia.</p>
       </div>
     </article>
 
@@ -2266,29 +2240,53 @@ nav ul a:hover::after { width: 100%; }
       <h2>What people say <em>about us.</em></h2>
     </div>
 
-    <div class="testimonial-grid">
-      <div class="testimonial testimonial--featured">
-        <blockquote>Zico Technologies has been instrumental in transforming our Zoho systems, specifically Zoho CRM and Zoho Recruit. Their team&rsquo;s expertise and hands-on approach ensured that every automation and workflow was aligned with our business goals. With their help, we were able to streamline our processes, which boosted our operational productivity. The improvements in our system have also enhanced our ability to pursue and manage business development opportunities effectively. For any company looking to unlock the full potential of their Zoho platform, Zico Technologies is an excellent choice.</blockquote>
-        <cite>
-          <div class="cite-avatar">R</div>
-          <div class="cite-info">
-            <strong>Ricardo Joseph</strong>
-            <span>CEO, Pharmavise</span>
+    <div class="testi-carousel">
+      <div class="testi-viewport">
+        <div class="testi-track" id="testiTrack">
+
+          <div class="testi-slide">
+            <div class="testi-logo-wrap">
+              <img src="Pharmavise_logo.png" alt="Pharmavise">
+            </div>
+            <div class="testi-content">
+              <blockquote>Zico Technologies has been instrumental in transforming our Zoho systems, specifically Zoho CRM and Zoho Recruit. Their team&rsquo;s expertise and hands-on approach ensured that every automation and workflow was aligned with our business goals. With their help, we were able to streamline our processes, which boosted our operational productivity. The improvements in our system have also enhanced our ability to pursue and manage business development opportunities effectively. For any company looking to unlock the full potential of their Zoho platform, Zico Technologies is an excellent choice.</blockquote>
+              <div class="testi-cite">
+                <div class="cite-avatar">R</div>
+                <div class="cite-info">
+                  <strong>Ricardo Joseph</strong>
+                  <span>CEO, Pharmavise</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <img class="client-logo" src="Pharmavise_logo.png" alt="Pharmavise">
-        </cite>
+
+          <div class="testi-slide">
+            <div class="testi-logo-wrap">
+              <img src="symvos_logo.png" alt="Symvos">
+            </div>
+            <div class="testi-content">
+              <blockquote>With the invaluable support of Zico Technologies, we&rsquo;ve transitioned from manually handling activities in Zoho to implementing automated workflows that significantly enhance our operations and sales processes. Their expertise has truly made a positive impact on our efficiency.</blockquote>
+              <div class="testi-cite">
+                <div class="cite-avatar">L</div>
+                <div class="cite-info">
+                  <strong>Licel Joy Hontalba</strong>
+                  <span>Manager, Symvos</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
 
-      <div class="testimonial">
-        <blockquote>With the invaluable support of Zico Technologies, we've transitioned from manually handling activities in Zoho to implementing automated workflows that significantly enhance our operations and sales processes. Their expertise has truly made a positive impact on our efficiency.</blockquote>
-        <cite>
-          <div class="cite-avatar">L</div>
-          <div class="cite-info">
-            <strong>Licel Joy Hontalba</strong>
-            <span>Manager, Symvos</span>
-          </div>
-          <img class="client-logo" src="symvos_logo.png" alt="Symvos">
-        </cite>
+      <div class="testi-controls">
+        <button class="testi-btn" id="testiPrev" type="button" aria-label="Previous review">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <div class="testi-dots" id="testiDots"></div>
+        <button class="testi-btn" id="testiNext" type="button" aria-label="Next review">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
       </div>
     </div>
   </div>
@@ -2606,6 +2604,66 @@ nav ul a:hover::after { width: 100%; }
         tilt.style.transform = 'rotateY(0deg) rotateX(0deg)';
       });
     }
+  })();
+</script>
+
+<!-- Testimonials carousel -->
+<script>
+  (function () {
+    var track = document.getElementById('testiTrack');
+    if (!track) return;
+    var slides = track.children;
+    var n = slides.length;
+    if (!n) return;
+    var dotsWrap = document.getElementById('testiDots');
+    var prev = document.getElementById('testiPrev');
+    var next = document.getElementById('testiNext');
+    var i = 0, timer = null;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var dots = [];
+    for (var k = 0; k < n; k++) {
+      (function (idx) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'testi-dot' + (idx === 0 ? ' is-active' : '');
+        b.setAttribute('aria-label', 'Go to review ' + (idx + 1));
+        b.addEventListener('click', function () { go(idx); restart(); });
+        dotsWrap && dotsWrap.appendChild(b);
+        dots.push(b);
+      })(k);
+    }
+
+    function go(idx) {
+      i = (idx + n) % n;
+      track.style.transform = 'translateX(-' + (i * 100) + '%)';
+      for (var k = 0; k < n; k++) dots[k] && dots[k].classList.toggle('is-active', k === i);
+    }
+    function restart() {
+      if (timer) { clearInterval(timer); timer = null; }
+      if (!reduce && n > 1) timer = setInterval(function () { go(i + 1); }, 7000);
+    }
+
+    prev && prev.addEventListener('click', function () { go(i - 1); restart(); });
+    next && next.addEventListener('click', function () { go(i + 1); restart(); });
+
+    // drag / swipe
+    var x0 = null;
+    track.addEventListener('pointerdown', function (e) { x0 = e.clientX; });
+    window.addEventListener('pointerup', function (e) {
+      if (x0 === null) return;
+      var dx = e.clientX - x0; x0 = null;
+      if (Math.abs(dx) > 45) { go(dx < 0 ? i + 1 : i - 1); restart(); }
+    });
+
+    // pause on hover
+    var carousel = track.closest('.testi-carousel');
+    if (carousel) {
+      carousel.addEventListener('mouseenter', function () { if (timer) { clearInterval(timer); timer = null; } });
+      carousel.addEventListener('mouseleave', restart);
+    }
+
+    restart();
   })();
 </script>
 
