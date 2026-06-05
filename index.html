@@ -872,9 +872,6 @@ nav ul a:hover::after { width: 100%; }
   margin-bottom: 20px;
   max-width: 60ch;
 }
-.about-text p:first-of-type::first-line {
-  font-weight: 500;
-}
 .about-text .closer {
   font-family: var(--serif);
   font-style: italic;
@@ -1185,11 +1182,12 @@ nav ul a:hover::after { width: 100%; }
   max-width: 1040px;
   margin: 0 auto;
   position: relative;
+  padding: 0 76px;
 }
 .testi-viewport {
   overflow: hidden;
-  border-radius: 22px;
-  box-shadow: 0 30px 70px -42px rgba(14, 31, 28, 0.3);
+  border-radius: 26px;
+  box-shadow: 0 40px 80px -46px rgba(14, 31, 28, 0.34);
 }
 .testi-track {
   display: flex;
@@ -1199,36 +1197,59 @@ nav ul a:hover::after { width: 100%; }
   flex: 0 0 100%;
   min-width: 100%;
   display: grid;
-  grid-template-columns: minmax(220px, 280px) 1fr;
-  gap: 56px;
+  grid-template-columns: 224px 1fr;
+  gap: 60px;
   align-items: center;
-  padding: 60px;
-  background: var(--paper);
+  padding: 64px 68px;
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgba(200, 99, 58, 0.05), transparent 55%),
+    var(--paper);
 }
 .testi-logo-wrap {
+  justify-self: center;
   display: grid;
   place-items: center;
-  aspect-ratio: 1 / 1;
-  padding: 32px;
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 24px 50px -30px rgba(14, 31, 28, 0.22);
+  width: 200px;
+  height: 200px;
+  padding: 38px;
+  background: radial-gradient(circle at 32% 26%, #ffffff, #f4efe4);
+  border-radius: 50%;
+  box-shadow:
+    0 26px 52px -28px rgba(14, 31, 28, 0.3),
+    inset 0 0 0 1px rgba(14, 31, 28, 0.06),
+    inset 0 0 0 9px rgba(200, 99, 58, 0.06);
 }
 .testi-logo-wrap img {
   max-width: 100%;
-  max-height: 110px;
+  max-height: 96px;
   width: auto;
   object-fit: contain;
   mix-blend-mode: multiply;
 }
+.testi-content {
+  position: relative;
+}
+.testi-content::before {
+  content: '\201C';
+  position: absolute;
+  top: -38px;
+  left: -8px;
+  font-family: var(--serif);
+  font-size: 96px;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.16;
+  pointer-events: none;
+}
 .testi-content blockquote {
+  position: relative;
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(17px, 1.55vw, 22px);
-  line-height: 1.5;
-  letter-spacing: -0.012em;
-  color: var(--ink);
-  margin-bottom: 30px;
+  font-size: 17px;
+  line-height: 1.65;
+  letter-spacing: -0.006em;
+  color: var(--ink-soft);
+  margin-bottom: 28px;
 }
 .testi-cite {
   display: flex;
@@ -1242,12 +1263,15 @@ nav ul a:hover::after { width: 100%; }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 22px;
-  margin-top: 34px;
+  margin-top: 30px;
 }
 .testi-btn {
-  width: 48px;
-  height: 48px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   border: 1px solid var(--rule);
   background: var(--paper);
@@ -1255,13 +1279,20 @@ nav ul a:hover::after { width: 100%; }
   place-items: center;
   cursor: pointer;
   color: var(--ink);
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 16px 34px -20px rgba(14, 31, 28, 0.45);
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
+.testi-btn--prev { left: 8px; }
+.testi-btn--next { right: 8px; }
 .testi-btn:hover {
   background: var(--ink);
   color: var(--cream);
   border-color: var(--ink);
+  box-shadow: 0 20px 40px -18px rgba(14, 31, 28, 0.55);
 }
+.testi-btn--prev:hover { transform: translateY(-50%) translateX(-2px); }
+.testi-btn--next:hover { transform: translateY(-50%) translateX(2px); }
+.testi-btn:active { transform: translateY(-50%) scale(0.94); }
 .testi-btn svg { width: 18px; height: 18px; }
 .testi-dots { display: flex; gap: 10px; }
 .testi-dot {
@@ -1279,15 +1310,43 @@ nav ul a:hover::after { width: 100%; }
   width: 26px;
   border-radius: 5px;
 }
+@media (max-width: 860px) {
+  .testi-carousel { padding: 0 58px; }
+  .testi-btn { width: 44px; height: 44px; }
+  .testi-btn--prev { left: 6px; }
+  .testi-btn--next { right: 6px; }
+}
 @media (max-width: 720px) {
+  .testi-carousel { padding: 0; }
   .testi-slide {
     grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 40px 28px;
-    text-align: left;
+    gap: 30px;
+    padding: 48px 26px 40px;
+    text-align: center;
+    justify-items: center;
   }
-  .testi-logo-wrap { aspect-ratio: auto; padding: 28px; max-width: 220px; }
-  .testi-logo-wrap img { max-height: 80px; }
+  .testi-logo-wrap {
+    width: 150px;
+    height: 150px;
+    padding: 28px;
+  }
+  .testi-logo-wrap img { max-height: 70px; }
+  .testi-content { width: 100%; }
+  .testi-content::before { top: -30px; left: 50%; transform: translateX(-50%); }
+  .testi-cite { justify-content: center; }
+  .testi-btn {
+    top: auto;
+    bottom: 12px;
+    transform: none;
+    width: 40px;
+    height: 40px;
+    background: rgba(250, 246, 238, 0.92);
+  }
+  .testi-btn--prev { left: 14px; }
+  .testi-btn--next { right: 14px; }
+  .testi-btn:hover,
+  .testi-btn--prev:hover,
+  .testi-btn--next:hover { transform: none; }
 }
 .cite-avatar {
   width: 44px; height: 44px;
@@ -2241,6 +2300,10 @@ nav ul a:hover::after { width: 100%; }
     </div>
 
     <div class="testi-carousel">
+      <button class="testi-btn testi-btn--prev" id="testiPrev" type="button" aria-label="Previous review">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+
       <div class="testi-viewport">
         <div class="testi-track" id="testiTrack">
 
@@ -2279,14 +2342,12 @@ nav ul a:hover::after { width: 100%; }
         </div>
       </div>
 
+      <button class="testi-btn testi-btn--next" id="testiNext" type="button" aria-label="Next review">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+
       <div class="testi-controls">
-        <button class="testi-btn" id="testiPrev" type="button" aria-label="Previous review">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
-        </button>
         <div class="testi-dots" id="testiDots"></div>
-        <button class="testi-btn" id="testiNext" type="button" aria-label="Next review">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
-        </button>
       </div>
     </div>
   </div>
